@@ -64,6 +64,8 @@ abstract class OAuth1Provider(
    */
   type A = OAuth1Info
 
+  override implicit val authInfoClassTag = implicitly[scala.reflect.ClassTag[OAuth1Info]]
+
   /**
    * The settings type.
    */

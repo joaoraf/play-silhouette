@@ -85,6 +85,8 @@ abstract class OAuth2Provider(httpLayer: HTTPLayer, stateProvider: OAuth2StatePr
    */
   type A = OAuth2Info
 
+  override implicit val authInfoClassTag = implicitly[scala.reflect.ClassTag[OAuth2Info]]
+
   /**
    * The settings type.
    */

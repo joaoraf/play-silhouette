@@ -37,6 +37,8 @@ trait SocialProvider extends Provider with SocialProfileBuilder {
    */
   type A <: AuthInfo
 
+  implicit val authInfoClassTag : ClassTag[A]
+
   /**
    * The settings type.
    */

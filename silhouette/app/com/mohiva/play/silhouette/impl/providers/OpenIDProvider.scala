@@ -41,6 +41,8 @@ abstract class OpenIDProvider(httpLayer: HTTPLayer, service: OpenIDService, val 
    */
   type A = OpenIDInfo
 
+  override implicit val authInfoClassTag = implicitly[scala.reflect.ClassTag[OpenIDInfo]]
+
   /**
    * The settings type.
    */
