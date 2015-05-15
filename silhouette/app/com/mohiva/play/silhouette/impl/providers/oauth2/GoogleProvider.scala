@@ -29,6 +29,8 @@ import play.api.libs.json.{ JsObject, JsValue }
 import scala.concurrent.Future
 import scala.concurrent.ExecutionContext
 
+import scala.reflect.classTag
+
 /**
  * A Google OAuth2 Provider.
  *
@@ -48,6 +50,10 @@ abstract class GoogleProvider(httpLayer: HTTPLayer, stateProvider: OAuth2StatePr
    * The content type to parse a profile from.
    */
   type Content = JsValue
+
+  //override def authInfoClassTag = classTag[OAuth2Info] //TODO: joao: remove when ready
+
+  
 
   /**
    * The provider ID.

@@ -37,7 +37,7 @@ trait SocialProvider extends Provider with SocialProfileBuilder {
    */
   type A <: AuthInfo
 
-  implicit val authInfoClassTag : ClassTag[A]
+  def authInfoClassTag : ClassTag[A] = throw new RuntimeException(s"authInfoClass not defined at ${this}")
 
   /**
    * The settings type.

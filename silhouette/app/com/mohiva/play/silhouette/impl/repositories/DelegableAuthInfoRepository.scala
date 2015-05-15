@@ -37,7 +37,6 @@ import scala.reflect.ClassTag
  * @param daos The auth info DAO implementations.
  */
 class DelegableAuthInfoRepository(daos: DelegableAuthInfoDAO[_]*) extends AuthInfoRepository {
-  println("DelegableAuthInfoRepository: daos = " + daos.map(_.classTag))
   /**
    * Finds the auth info which is linked with the specified login info.
    *
@@ -47,13 +46,10 @@ class DelegableAuthInfoRepository(daos: DelegableAuthInfoDAO[_]*) extends AuthIn
    * @return The found auth info or None if no auth info could be found for the given login info.
    */
   def find[T <: AuthInfo](loginInfo: LoginInfo)(implicit tag: ClassTag[T], ec: ExecutionContext): Future[Option[T]] = {
-    println(s"find: tag: ${tag}")
-    val r = daos.find(_.classTag == tag) match {
+    daos.find(_.classTag == tag) match {
       case Some(dao) => dao.find(loginInfo).map(_.map(_.asInstanceOf[T]))
       case _ => throw new Exception(FindError.format(tag.runtimeClass))
     }
-    println(s"find: result ${r}")
-    r
   }
 
   /**

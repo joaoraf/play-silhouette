@@ -31,6 +31,7 @@ import play.api.libs.json._
 import play.api.libs.functional.syntax._
 import play.api.libs.ws.WSResponse
 import play.api.mvc._
+import scala.reflect.classTag
 
 import scala.concurrent.Future
 import scala.concurrent.ExecutionContext
@@ -85,8 +86,8 @@ abstract class OAuth2Provider(httpLayer: HTTPLayer, stateProvider: OAuth2StatePr
    */
   type A = OAuth2Info
 
-  override implicit val authInfoClassTag = implicitly[scala.reflect.ClassTag[OAuth2Info]]
-
+  override def authInfoClassTag = classTag[OAuth2Info]
+  
   /**
    * The settings type.
    */
